@@ -1,0 +1,7 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "files.associations": {
+        "readfile.C": "cpp",
+        "readOutput.C": "cpp"
+    }
+}
