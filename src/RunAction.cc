@@ -88,7 +88,8 @@ void RunAction::BeginOfRunAction(const G4Run*)
   // Creation of ntuple
   man->CreateNtuple("events","scattering data");
 
-  man->CreateNtupleDColumn("event");
+  man->CreateNtupleDColumn("event_id");
+  man->CreateNtupleIColumn("mult");
   man->CreateNtupleDColumn("x");
   man->CreateNtupleDColumn("y");
   man->CreateNtupleDColumn("z");
@@ -98,7 +99,6 @@ void RunAction::BeginOfRunAction(const G4Run*)
   man->CreateNtupleDColumn("py");
   man->CreateNtupleDColumn("pz");
   man->FinishNtuple();
-
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

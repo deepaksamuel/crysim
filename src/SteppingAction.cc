@@ -61,8 +61,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 //         (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
 //     fScoringVolume = detConstruction->GetScoringVolume();
 //   }
-// const PrimaryGeneratorAction* prim_gen =   static_cast<const PrimaryGeneratorAction*> (G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction());
-// double event_id = (double) prim_gen->GetCurrentEventId(); // use to get the event id for multiplicity 2 events
+const PrimaryGeneratorAction* prim_gen =   static_cast<const PrimaryGeneratorAction*> (G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction());
+// int mult = prim_gen->GetMultiplicity(); // use to get the event id for multiplicity 2 events
 
 if(step->GetPreStepPoint()->GetPhysicalVolume()->GetName()=="glassplate"){
     if(step->GetTrack()->GetDefinition()->GetPDGEncoding()==abs(13) ){
@@ -70,15 +70,16 @@ if(step->GetPreStepPoint()->GetPhysicalVolume()->GetName()=="glassplate"){
       //G4cout<<event_id<<G4endl;
       
       man->FillNtupleDColumn(0, G4EventManager::GetEventManager()->GetConstCurrentEvent()->GetEventID());
+      man->FillNtupleIColumn(1, prim_gen->GetMultiplicity());
       // man->FillNtupleDColumn(0, event_id);
-      man->FillNtupleDColumn(1, step->GetPreStepPoint()->GetPosition().x());
-      man->FillNtupleDColumn(2, step->GetPreStepPoint()->GetPosition().y());
-      man->FillNtupleDColumn(3, step->GetPreStepPoint()->GetPosition().z());
-      man->FillNtupleDColumn(4, step->GetPreStepPoint()->GetProperTime());
-      man->FillNtupleDColumn(5, step->GetTrack()->GetDefinition()->GetPDGEncoding());
-      man->FillNtupleDColumn(6,step->GetTrack()->GetMomentum().x());
-      man->FillNtupleDColumn(7,step->GetTrack()->GetMomentum().y());
-      man->FillNtupleDColumn(8,step->GetTrack()->GetMomentum().z());
+      man->FillNtupleDColumn(2, step->GetPreStepPoint()->GetPosition().x());
+      man->FillNtupleDColumn(3, step->GetPreStepPoint()->GetPosition().y());
+      man->FillNtupleDColumn(4, step->GetPreStepPoint()->GetPosition().z());
+      man->FillNtupleDColumn(5, step->GetPreStepPoint()->GetProperTime());
+      man->FillNtupleDColumn(6, step->GetTrack()->GetDefinition()->GetPDGEncoding());
+      man->FillNtupleDColumn(7,step->GetTrack()->GetMomentum().x());
+      man->FillNtupleDColumn(8,step->GetTrack()->GetMomentum().y());
+      man->FillNtupleDColumn(9,step->GetTrack()->GetMomentum().z());
       man->AddNtupleRow();
     // }
   }

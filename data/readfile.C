@@ -25,9 +25,6 @@ int readfile()
     for(int i=0; i<60;i++)
     {   
         t.Form("n==%u",i);
-        // cout<<t<<endl;
-        // cry_data->GetEntry(i);
-        
         entries=cry_data->Draw(">>event",t);
         elist = (TEventList*)gDirectory->Get("event");
         

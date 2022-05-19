@@ -8,8 +8,10 @@ int readOutput()
     double event;
     double x,y,z,t,px,py,pz;
     double pid,entries;
+    int mult;
 
-    cry_data->SetBranchAddress("event",&event);
+    cry_data->SetBranchAddress("event_id",&event);
+    cry_data->SetBranchAddress("mult",&mult);
     cry_data->SetBranchAddress("x",&x);
     cry_data->SetBranchAddress("y",&y);
     cry_data->SetBranchAddress("z",&z);
@@ -26,7 +28,7 @@ int readOutput()
     // cry_data->GetEntries()
     for(int i=0; i<60;i++)
     {   
-        tt.Form("event==%u &&id==13",i);
+        tt.Form("event_id==%u &&id==13",i);
         // cout<<t<<endl;
         // cry_data->GetEntry(i);
         
@@ -38,8 +40,8 @@ int readOutput()
         
         else{
         cry_data->SetEventList(elist);  
-        // cry_data->GetEntry(elist->GetEntry(0));
-        cout<<i<<" "<<entries<<endl;
+        cry_data->GetEntry(elist->GetEntry(0));
+        cout<<i<<" "<<mult<<endl;
         cry_data->SetEventList(0); //reset the entry list
         }
 

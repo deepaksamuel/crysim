@@ -92,7 +92,7 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   // 53 is a double mult event
-  t.Form("n==%u",53);
+  t.Form("n==%u",event_id);
   mult=cry_data->Draw(">>event",t);
   elist = (TEventList*)gDirectory->Get("event");
   if(elist==NULL)
